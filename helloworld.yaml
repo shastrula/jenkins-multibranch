@@ -1,0 +1,7 @@
+pets:
+  - name: dog
+    age: 2
+  - name: cat
+    age: 3
+  - name: fish
+    age: 1
