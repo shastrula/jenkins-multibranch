@@ -1,17 +1,23 @@
 pipeline {
     agent any
 
+tools {
+    maven '3.9.9'
+}
+
     stages {
-        stage('Hello') {
+        stage('Maven Build') {
             steps {
-                echo 'Hello, World!'
+                dir('hello-world') {
+                    sh 'mvn clean package'
+                }
             }
         }
-        stage("read file") {
+
+        stage('Run Jar') {
             steps {
-                script {
-                    def file = readFile 'helloworld.yaml'
-                    echo file
+                dir('hello-world') {
+                    sh 'java -jar target/hello-world-1.0-SNAPSHOT.jar'
                 }
             }
         }
